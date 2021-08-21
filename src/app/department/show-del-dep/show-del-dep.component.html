@@ -1,0 +1,53 @@
+<div class="container">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg btn-block" 
+data-bs-toggle="modal" data-bs-target="#exampleModal" 
+data-bs-backdrop="static" data-bs-keyboard="false"
+(click)="addClick()" >
+    Add Department
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" data-target="#exampleModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" 
+          (click)="closeClick()"></button>
+        </div>
+        <div class="modal-body">
+          <app-add-edit-dep [dep]="dep" (refreshList)="refreshDeptList()"></app-add-edit-dep>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class="table table striped">
+    <thead>
+        <tr>
+            <th>Deptartment Id</th>
+            <th>Department Name</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let x of DepartmentList">
+            <td>{{x.deptId}}</td>
+            <td>{{x.deptName}}</td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary"
+                data-bs-toggle="modal"  data-bs-target="#exampleModal" 
+                (click)="editClick(x)">
+                    Edit
+                </button>
+            
+                <button type="button" class="btn btn-outline-secondary"
+                (click)="deleteClick(x)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
